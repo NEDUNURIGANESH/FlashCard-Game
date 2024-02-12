@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Card Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #flashcard-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #flashcard {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #buttons-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div id="flashcard-container">
+    <div id="flashcard">Welcome to the Flash Card Game!</div>
+    <div id="buttons-container">
+        <button id="nextButton" class="btn" onclick="showRandomFlashcard()">Next Card</button>
+        <button id="answerButton" class="btn" onclick="toggleAnswer()">Show Answer</button>
+    </div>
+</div>
+
+<script>
+const flashcards = [
+    { question: 'What is the capital of France?', answer: 'Paris' },
+    { question: 'Which planet is known as the Red Planet?', answer: 'Mars' },
+    { question: 'What is the powerhouse of the cell?', answer: 'Mitochondria' },
+    { question: "What does the <img> tag do?", answer: "Inserts an image into an HTML document" },
+    { question: "Capital of France", answer: "Paris" },
+    { question: "Largest ocean on Earth", answer: "Pacific Ocean" },
+    { question: "Highest mountain in the world", answer: "Mount Everest" },
+    { question: "What does the <img> tag do?", answer: "Inserts an image into an HTML document" },
+    { question: "What is the difference between <div> and <span> elements?", answer: "<div> is a generic container element, while <span> is used for inline formatting" },
+    { question: "What attribute is used to specify the title of a web page?", answer: "The <title> element" },
+    { question: "How do you change the background color of a paragraph element?", answer: "Using the background-color property in a CSS rule" },
+    { question: "What does the position: fixed property do?", answer: "Fixes an element in place regardless of scrolling" },
+    { question: "What is the DOM?", answer: "Document Object Model, representing the HTML document as a tree structure" }
+
+];
+
+let currentFlashcardIndex = 0;
+
+function showRandomFlashcard() {
+    currentFlashcardIndex = Math.floor(Math.random() * flashcards.length);
+    updateFlashcard();
+}
+
+function toggleAnswer() {
+    const flashcardElement = document.getElementById('flashcard');
+    flashcardElement.textContent = flashcards[currentFlashcardIndex].answer;
+}
+
+function updateFlashcard() {
+    const flashcardElement = document.getElementById('flashcard');
+    flashcardElement.textContent = flashcards[currentFlashcardIndex].question;
+}
+
+
+showRandomFlashcard();
+
+
+document.getElementById('nextButton').addEventListener('click', showRandomFlashcard);
+document.getElementById('answerButton').addEventListener('click', toggleAnswer);
+
+</script>
+
+</body>
+</html>
